@@ -1,0 +1,17 @@
+# Python 캐시 파일
+__pycache__/
+*.py[cod]
+
+# Python 가상환경
+.venv/
+venv/
+
+# 환경변수 및 비밀 정보
+.env
+.env.*
+
+# VS Code 설정
+.vscode/
+
+# macOS
+.DS_Store
