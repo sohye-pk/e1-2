@@ -225,7 +225,12 @@ class QuizGame:
             print("y 또는 n을 입력해주세요.")
 
     def show_score(self):
-        print("5. 점수 확인")
+        print()
+        print("========================================")
+        print("             점수 확인")
+        print("========================================")
+        print(f"최고 점수: {self.best_score}점")
+        print("========================================")
 
     def save_data(self):
         self.data_manager.save_data(
