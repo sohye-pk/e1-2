@@ -1,16 +1,19 @@
+from input_handler import InputHandler
+
+
 class QuizGame:
     def __init__(self):
         self.quizzes = []
         self.best_score = 0
 
     def run(self):
-        while True:
-            try:
+        try:
+            while True:
                 self.show_menu()
-                choice = int(input("선택: ").strip())
+
+                choice = InputHandler.get_number("선택: ", 1, 6)
 
                 if choice is None:
-                    self.save_data()
                     break
 
                 if choice == 1:
@@ -29,19 +32,11 @@ class QuizGame:
                     self.show_score()
 
                 elif choice == 6:
-                    self.save_data()
                     print("프로그램을 종료합니다.")
                     break
 
-            except KeyboardInterrupt:
-                print("\n프로그램을 종료합니다.")
-                self.save_data()
-                break
-
-            except EOFError:
-                print("\n입력 스트림이 종료되었습니다.")
-                self.save_data()
-                break
+        finally:
+            self.save_data()
 
     def show_menu(self):
         print()
