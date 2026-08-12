@@ -7,7 +7,7 @@ class Quiz:
 
     def show_question(self):
         print()
-        print(self.question)
+        print(f"{self.question} (0: 힌트 보기)")
 
         for index, choice in enumerate(self.choices, start=1):
             print(f"{index}. {choice}")

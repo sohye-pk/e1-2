@@ -1,6 +1,8 @@
 import json
+
 from quiz import Quiz
 from quiz_data import DEFAULT_QUIZZES
+from quiz_record import QuizRecord
 
 
 class DataManager:
@@ -23,15 +25,20 @@ class DataManager:
 
             best_score = data.get("best_score", 0)
 
-            return quizzes, best_score
+            history = [
+                QuizRecord.from_dict(record)
+                for record in data.get("history", [])
+            ]
+
+            return quizzes, best_score, history
 
         except (FileNotFoundError, json.JSONDecodeError, KeyError, TypeError):
             print("저장된 데이터를 불러올 수 없습니다.")
             print("기본 퀴즈 데이터를 사용합니다.")
 
-            return DEFAULT_QUIZZES.copy(), 0
+            return DEFAULT_QUIZZES.copy(), 0, []
 
-    def save_data(self, quizzes, best_score):
+    def save_data(self, quizzes, best_score, history):
         data = {
             "quizzes": [
                 {
@@ -42,7 +49,11 @@ class DataManager:
                 }
                 for quiz in quizzes
             ],
-            "best_score": best_score
+            "best_score": best_score,
+            "history": [
+                record.to_dict()
+                for record in history
+            ]
         }
 
         with open(self.FILE_PATH, "w", encoding="utf-8") as file:
