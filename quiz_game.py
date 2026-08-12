@@ -56,7 +56,71 @@ class QuizGame:
         print("========================================")
 
     def play_quiz(self):
-        print("1. 퀴즈 풀기")
+        if not self.quizzes:
+            print("\n등록된 퀴즈가 없습니다.")
+            return
+
+        print()
+        print("========================================")
+        print("             퀴즈 시작")
+        print("========================================")
+        print(f"현재 등록된 퀴즈: {len(self.quizzes)}개")
+
+        quiz_count = InputHandler.get_number("풀 문제 수: ", 1, len(self.quizzes))
+
+        if quiz_count is None:
+            return
+
+        selected_quizzes = random.sample(self.quizzes, quiz_count)
+
+        score = 0
+
+        for index, quiz in enumerate(selected_quizzes, start=1):
+            print()
+            print(f"[{index}/{quiz_count}]")
+            print(f"{quiz.question} (0: 힌트 보기)")
+
+            for choice_index, choice in enumerate(quiz.choices, start=1):
+                print(f"{choice_index}. {choice}")
+
+            hint_used = False
+
+            while True:
+                answer = InputHandler.get_number("정답: ", 0, len(quiz.choices))
+
+                if answer is None:
+                    print("\n퀴즈를 종료합니다.")
+                    return
+
+                if answer == 0:
+                    quiz.show_hint()
+                    hint_used = True
+                    continue
+
+                if quiz.check_answer(answer):
+                    if hint_used:
+                        score += 0.5
+                        print("정답입니다! +0.5점")
+                    else:
+                        score += 1
+                        print("정답입니다! +1점")
+                else:
+                    print("오답입니다.")
+                    print(f"정답: {quiz.answer}")
+
+                break
+
+        print()
+        print("========================================")
+        print("             퀴즈 종료")
+        print("========================================")
+        print(f"점수: {score} / {quiz_count}")
+
+        if score > self.best_score:
+            self.best_score = score
+            print("최고 점수를 갱신했습니다!")
+
+        print("========================================")
 
     def add_quiz(self):
         print()
@@ -98,7 +162,6 @@ class QuizGame:
         self.quizzes.append(quiz)
 
         print("\n퀴즈가 추가되었습니다.")
-
 
     def show_quizzes(self):
         print("3. 퀴즈 목록")
