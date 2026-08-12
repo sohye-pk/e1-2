@@ -39,6 +39,12 @@ class QuizGame:
                     print("프로그램을 종료합니다.")
                     break
 
+        except KeyboardInterrupt:
+            print("\n프로그램을 종료합니다.")
+
+        except EOFError:
+            print("\n입력 스트림이 종료되었습니다.")
+            
         finally:
             self.save_data()
 
