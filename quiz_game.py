@@ -1,10 +1,11 @@
 from input_handler import InputHandler
+from data_manager import DataManager
 
 
 class QuizGame:
     def __init__(self):
-        self.quizzes = []
-        self.best_score = 0
+        self.data_manager = DataManager()
+        self.quizzes, self.best_score = self.data_manager.load_data()
 
     def run(self):
         try:
@@ -67,7 +68,10 @@ class QuizGame:
         print("5. 점수 확인")
 
     def save_data(self):
-        pass
+        self.data_manager.save_data(
+            self.quizzes,
+            self.best_score
+        )
 
     def load_data(self):
         pass
