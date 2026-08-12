@@ -1,3 +1,6 @@
+import random
+
+from quiz import Quiz
 from input_handler import InputHandler
 from data_manager import DataManager
 
@@ -56,7 +59,46 @@ class QuizGame:
         print("1. 퀴즈 풀기")
 
     def add_quiz(self):
-        print("2. 퀴즈 추가")
+        print()
+        print("========================================")
+        print("             퀴즈 추가")
+        print("========================================")
+
+        question = InputHandler.get_text("문제: ")
+
+        if question is None:
+            return
+
+        choice_count = 4
+
+        if choice_count is None:
+            return
+
+        choices = []
+
+        for index in range(1, choice_count + 1):
+            choice = InputHandler.get_text(f"{index}번 보기: ")
+
+            if choice is None:
+                return
+
+            choices.append(choice)
+
+        answer = InputHandler.get_number("정답 번호: ", 1, choice_count)
+
+        if answer is None:
+            return
+
+        hint = InputHandler.get_optional_text("힌트(선택): ")
+
+        if hint is None:
+            return
+
+        quiz = Quiz(question, choices, answer, hint)
+        self.quizzes.append(quiz)
+
+        print("\n퀴즈가 추가되었습니다.")
+
 
     def show_quizzes(self):
         print("3. 퀴즈 목록")
