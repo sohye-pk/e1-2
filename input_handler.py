@@ -15,6 +15,14 @@ class InputHandler:
             except (KeyboardInterrupt, EOFError):
                 print("\n프로그램을 종료합니다.")
                 return None
+            
+    @staticmethod
+    def get_optional_text(prompt):
+        try:
+            return input(prompt).strip()
+        except (KeyboardInterrupt, EOFError):
+            print("\n프로그램을 종료합니다.")
+            return None
 
     @staticmethod
     def get_number(prompt, min_value, max_value):
