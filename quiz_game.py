@@ -164,7 +164,21 @@ class QuizGame:
         print("\n퀴즈가 추가되었습니다.")
 
     def show_quizzes(self):
-        print("3. 퀴즈 목록")
+        print()
+        print("========================================")
+        print("             퀴즈 목록")
+        print("========================================")
+
+        if not self.quizzes:
+            print("등록된 퀴즈가 없습니다.")
+            print("========================================")
+            return
+
+        for index, quiz in enumerate(self.quizzes, start=1):
+            print(f"{index}. {quiz.question}")
+
+        print("========================================")
+        print(f"총 {len(self.quizzes)}개의 퀴즈가 등록되어 있습니다.")
 
     def delete_quiz(self):
         print("4. 퀴즈 삭제")
