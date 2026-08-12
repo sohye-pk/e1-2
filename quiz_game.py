@@ -181,7 +181,48 @@ class QuizGame:
         print(f"총 {len(self.quizzes)}개의 퀴즈가 등록되어 있습니다.")
 
     def delete_quiz(self):
-        print("4. 퀴즈 삭제")
+        if not self.quizzes:
+            print("\n삭제할 퀴즈가 없습니다.")
+            return
+
+        print()
+        print("========================================")
+        print("             퀴즈 삭제")
+        print("========================================")
+
+        for index, quiz in enumerate(self.quizzes, start=1):
+            print(f"{index}. {quiz.question}")
+
+        print("========================================")
+
+        quiz_index = InputHandler.get_number("삭제할 퀴즈 번호: ", 1, len(self.quizzes))
+
+        if quiz_index is None:
+            return
+
+        quiz = self.quizzes[quiz_index - 1]
+
+        print()
+        print(f"삭제할 퀴즈: {quiz.question}")
+
+        while True:
+            confirm = InputHandler.get_text("정말 삭제하시겠습니까? (y/n): ")
+
+            if confirm is None:
+                return
+
+            confirm = confirm.lower()
+
+            if confirm == "y":
+                self.quizzes.pop(quiz_index - 1)
+                print("퀴즈가 삭제되었습니다.")
+                return
+
+            if confirm == "n":
+                print("삭제를 취소했습니다.")
+                return
+
+            print("y 또는 n을 입력해주세요.")
 
     def show_score(self):
         print("5. 점수 확인")
