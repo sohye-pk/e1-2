@@ -1,0 +1,72 @@
+{
+    "quizzes": [
+        {
+            "question": "현재 위치가 /project/src이고, /project/data/a.txt를 src/backup/으로 복사하려 한다. 올바른 명령은?",
+            "choices": [
+                "cp ../data/a.txt backup/",
+                "cp ../../data/a.txt backup/",
+                "cp ../data/a.txt ./backup/",
+                "cp /data/a.txt ./backup/"
+            ],
+            "answer": 3,
+            "hint": "현재 위치는 src입니다. data와 backup의 위치를 각각 현재 위치와 비교해 보세요."
+        },
+        {
+            "question": "다음 권한의 파일을 소유자는 수정할 수 있고, 그룹은 읽을 수만 있으며, 나머지는 접근할 수 없게 변경하려 한다. 필요한 chmod 값은?",
+            "choices": [
+                "640",
+                "620",
+                "460",
+                "600"
+            ],
+            "answer": 1,
+            "hint": "소유자, 그룹, 기타 사용자 순서입니다. 각각 필요한 r/w/x 권한을 숫자로 바꿔보세요."
+        },
+        {
+            "question": "app.py와 README.md를 수정했다. app.py만 다음 커밋에 포함하고 싶다. 이후 두 파일 모두 수정된 상태를 유지하려면 어떤 순서가 적절한가?",
+            "choices": [
+                "git add . → git commit",
+                "git add app.py → git commit",
+                "git commit → git add app.py",
+                "git add README.md → git commit"
+            ],
+            "answer": 2,
+            "hint": "commit은 Working Tree가 아니라 Staging Area에 올라간 변경을 대상으로 합니다."
+        },
+        {
+            "question": "A-B-C 순서의 커밋에서 현재 HEAD가 C다. C의 커밋을 취소하되 C의 변경 내용은 수정할 수 있도록 남겨두려 한다. 어떤 명령이 적절한가?",
+            "choices": [
+                "git reset --hard HEAD~1",
+                "git reset --soft HEAD~1",
+                "git reset --hard HEAD",
+                "git reset --soft HEAD~2"
+            ],
+            "answer": 2,
+            "hint": "목표는 C를 가리키던 HEAD를 B로 옮기면서 C의 변경 내용을 버리지 않는 것입니다."
+        },
+        {
+            "question": "누오가 진화하기 전에는 무슨 포켓몬인가요?",
+            "choices": [
+                "우파",
+                "루파",
+                "발챙이",
+                "꼬부기"
+            ],
+            "answer": 1,
+            "hint": "누오는 동그랗다"
+        }
+    ],
+    "best_score": 5.0,
+    "history": [
+        {
+            "played_at": "2026-08-16 19:33:29",
+            "quiz_count": 6,
+            "score": 5.0
+        },
+        {
+            "played_at": "2026-08-16 19:36:31",
+            "quiz_count": 6,
+            "score": 2
+        }
+    ]
+}
