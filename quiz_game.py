@@ -1,5 +1,6 @@
 import random
 
+from quiz import Quiz
 from quiz_record import QuizRecord
 from input_handler import InputHandler
 from data_manager import DataManager
